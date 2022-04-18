@@ -6,16 +6,17 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [fullname, setFullname] = useState("Waitingfordata");
-  const getRandomName = async () => {
-    const response = await fetch("https://randomuser.me/api");
-    const data = await response.json();
-    setFullname(data.results[0].name.first + " " + data.results[0].name.last);
-    console.log(fullname);
-    return fullname;
-  };
+
   useEffect(() => {
+    const getRandomName = async () => {
+      const response = await fetch("https://randomuser.me/api");
+      const data = await response.json();
+      setFullname(data.results[0].name.first + " " + data.results[0].name.last);
+      console.log(fullname);
+      return fullname;
+    };
     getRandomName();
-  }, []);
+  });
 
   return (
     <>
